@@ -1,0 +1,4 @@
+exchange:
+  api:
+    base-url: www.onet.pl
+    api-key: dupa123
