@@ -1,0 +1,4 @@
+- zarejestrować się na jakiejś stronie exchange api (potrzebny klucz i bazowy adres)  https://exchangeratesapi.io/
+- 
+- Poczytać RestTemplate, WebClient, FeignClient
+- spróbować zaimplementować wysyłkę zapytania do zewnętrznego api (pobranie wszystkich dostępnych walut)
