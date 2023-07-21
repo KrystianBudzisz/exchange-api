@@ -1,5 +1,6 @@
 exchange:
   api:
-    base-url: https://manage.exchangeratesapi.io/
+    base-url: "https://api.exchangeratesapi.io/"
     api-key: 5ec9440af0719caa2950ed76ba7b3c48
-
+    all-currencies-endpoint: /v1/symbols
+    single-currency-endpoint: /path-to-single-currency-endpoint/{currencyCode}

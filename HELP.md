@@ -3,6 +3,10 @@
 - Poczytać RestTemplate, WebClient, FeignClient
 - spróbować zaimplementować wysyłkę zapytania do zewnętrznego api (pobranie wszystkich dostępnych walut)
 
+
+
+
+
 RestTemplate: To był podstawowy klient HTTP Springa, używany do synchronicznej komunikacji z serwisami REST. 
 RestTemplate dostarcza różne metody do wykonania różnych rodzajów żądań HTTP, takich jak GET, POST, DELETE i PUT.
 Jest to dość proste i intuicyjne w użyciu, ale od wersji 5.1 Springa RestTemplate zostało oznaczone jako przestarzałe
