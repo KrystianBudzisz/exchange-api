@@ -9,7 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 public class TestModel {
 
-    private String baseUrl;
-    private String apiKey;
+
+    private String currencyCode;
+    private String currencyValue;
 
 }

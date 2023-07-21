@@ -21,6 +21,7 @@ public class ExchangeService {
 
 //    private final RestTemplate restTemplate;
 
+
     public TestModel getAllCurrencies() {
         String currencies = exchangeClient.getAllCurrencies();
         return new TestModel(properties.getBaseUrl(), currencies);
@@ -28,6 +29,6 @@ public class ExchangeService {
 
     public TestModel getCurrency(String currencyCode) {
         String currency = exchangeClient.getCurrency(currencyCode);
-        return new TestModel(properties.getBaseUrl(), currency);
+        return new TestModel(currencyCode, currency);
     }
 }
