@@ -4,4 +4,5 @@ exchange:
     api-key: 5ec9440af0719caa2950ed76ba7b3c48
     all-currencies-endpoint: /v1/latest
     symbols-endpoint: /v1/symbols
+    historical-endpoint: /v1
 

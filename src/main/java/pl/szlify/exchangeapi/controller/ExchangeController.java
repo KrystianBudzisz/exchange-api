@@ -1,10 +1,9 @@
 package pl.szlify.exchangeapi.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
+import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
 import pl.szlify.exchangeapi.model.SymbolsResponse;
 import pl.szlify.exchangeapi.service.ExchangeService;
 
@@ -26,4 +25,11 @@ public class ExchangeController {
         return exchangeService.getAllSymbols();
     }
 
+    @GetMapping("/historical/{date}")
+    public HistoricalRatesResponse  getHistoricalRates(
+            @PathVariable String date,
+            @RequestParam(value = "base", required = false) String base,
+            @RequestParam(value = "symbols", required = false) String symbols) {
+        return exchangeService.getHistoricalRates(date, base, symbols);
+    }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.szlify.exchangeapi.client.ExchangeClient;
 import pl.szlify.exchangeapi.exception.ExchangeApiException;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
+import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
 import pl.szlify.exchangeapi.model.SymbolsResponse;
 import pl.szlify.exchangeapi.properties.ExchangeApiProperties;
 
@@ -30,6 +31,14 @@ public class ExchangeService {
             return exchangeClient.getAllSymbols();
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to fetch all symbols", e);
+        }
+    }
+
+    public HistoricalRatesResponse getHistoricalRates(String date, String base, String symbols) {
+        try {
+            return exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
+        } catch (Exception e) {
+            throw new ExchangeApiException("Failed to fetch historical rates", e);
         }
     }
 }
