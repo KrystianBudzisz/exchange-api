@@ -3,7 +3,9 @@ package pl.szlify.exchangeapi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.szlify.exchangeapi.client.ExchangeClient;
+import pl.szlify.exchangeapi.exception.ExchangeApiException;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
+import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
 import pl.szlify.exchangeapi.model.SymbolsResponse;
 import pl.szlify.exchangeapi.properties.ExchangeApiProperties;
 
@@ -16,11 +18,27 @@ public class ExchangeService {
 
 
     public CurrencyResponse getAllCurrencies() {
-        CurrencyResponse currencies = exchangeClient.getAllCurrencies();
-        return new CurrencyResponse(properties.getBaseUrl(), currencies);
+        try {
+            CurrencyResponse currencies = exchangeClient.getAllCurrencies();
+            return new CurrencyResponse(properties.getBaseUrl(), currencies);
+        } catch (Exception e) {
+            throw new ExchangeApiException("Failed to fetch all currencies", e);
+        }
     }
 
     public SymbolsResponse getAllSymbols() {
-        return exchangeClient.getAllSymbols();
+        try {
+            return exchangeClient.getAllSymbols();
+        } catch (Exception e) {
+            throw new ExchangeApiException("Failed to fetch all symbols", e);
+        }
+    }
+
+    public HistoricalRatesResponse getHistoricalRates(String date, String base, String symbols) {
+        try {
+            return exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
+        } catch (Exception e) {
+            throw new ExchangeApiException("Failed to fetch historical rates", e);
+        }
     }
 }
