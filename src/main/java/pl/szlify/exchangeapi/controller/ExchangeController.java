@@ -2,6 +2,7 @@ package pl.szlify.exchangeapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import pl.szlify.exchangeapi.model.ConvertReponse;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
 import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
 import pl.szlify.exchangeapi.model.SymbolsResponse;
@@ -32,4 +33,9 @@ public class ExchangeController {
             @RequestParam(value = "symbols", required = false) String symbols) {
         return exchangeService.getHistoricalRates(date, base, symbols);
     }
+
+    @GetMapping("/convert")
+    public ConvertReponse getConvertRates(
+
+    )
 }

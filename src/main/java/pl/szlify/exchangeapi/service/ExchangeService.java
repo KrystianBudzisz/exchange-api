@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.szlify.exchangeapi.client.ExchangeClient;
 import pl.szlify.exchangeapi.exception.ExchangeApiException;
+import pl.szlify.exchangeapi.model.ConvertReponse;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
 import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
 import pl.szlify.exchangeapi.model.SymbolsResponse;
@@ -39,6 +40,15 @@ public class ExchangeService {
             return exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to fetch historical rates", e);
+        }
+    }
+
+    public ConvertReponse getConvertedRates(String from, String to, Double amount, String date) {
+
+        try{
+            return exchangeClient.getConvertRate(from,to, properties.getApiKey(), amount,date);
+        } catch (Exception e) {
+            throw new ExchangeApiException("Failed to convert ", e);
         }
     }
 }
