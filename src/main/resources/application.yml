@@ -1,8 +1,9 @@
 exchange:
   api:
-    base-url: "http://api.exchangeratesapi.io"
-    api-key: 5ec9440af0719caa2950ed76ba7b3c48
+    base-url: "https://api.apilayer.com/exchangerates_data"
+    api-key: KQ7o2u5nhwiDtGeEvrj5ccS4NNAhOp7w
     all-currencies-endpoint: /v1/latest
-    symbols-endpoint: /v1/symbols
+    symbols-endpoint: /symbols
     historical-endpoint: /v1
+    convert-endpoint: /convert
 

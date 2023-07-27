@@ -25,7 +25,6 @@ public class ExchangeController {
     public SymbolsResponse getAllSymbols() {
         return exchangeService.getAllSymbols();
     }
-
     @GetMapping("/historical/{date}")
     public HistoricalRatesResponse  getHistoricalRates(
             @PathVariable String date,
@@ -36,6 +35,12 @@ public class ExchangeController {
 
     @GetMapping("/convert")
     public ConvertReponse getConvertRates(
+            @RequestParam("from") String from,
+            @RequestParam("to") String to,
+            @RequestParam("amount") Double amount,
+            @RequestParam(value = "date", required = false) String date) {
 
-    )
+        return exchangeService.getConvertedRates(from,to,amount,date);
+    }
+
 }

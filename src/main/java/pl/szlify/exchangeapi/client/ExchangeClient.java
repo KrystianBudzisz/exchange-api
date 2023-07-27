@@ -1,5 +1,6 @@
 package pl.szlify.exchangeapi.client;
 
+import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ public interface ExchangeClient {
     @GetMapping("${exchange.api.all-currencies-endpoint}?access_key=${exchange.api.api-key}")
     CurrencyResponse getAllCurrencies();
 
-    @GetMapping("${exchange.api.symbols-endpoint}?access_key=${exchange.api.api-key}")
+    @GetMapping("${exchange.api.symbols-endpoint}")
     SymbolsResponse getAllSymbols();
 
     @GetMapping("${exchange.api.historical-endpoint}/{date}")
@@ -25,14 +26,11 @@ public interface ExchangeClient {
             @RequestParam(value = "base", required = false) String base,
             @RequestParam(value = "symbols", required = false) String symbols);
 
-    @GetMapping("${exchange.api.convert-endpoint}access_key=${exchange.api.api-key}")
+    @GetMapping("${exchange.api.convert-endpoint}")
+    @Headers("apikey: ${exchange.api.api-key}")
     ConvertReponse getConvertRate(
             @RequestParam("from") String from,
             @RequestParam("to") String to,
-            @RequestParam("access_key") String apiKey,
-            @RequestParam("amount") Double amount,
-            @RequestParam(value = "date",required = false) String date);
-
-
+            @RequestParam("amount") Double amount);
 
 }
