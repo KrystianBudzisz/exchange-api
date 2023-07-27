@@ -33,6 +33,4 @@ public interface ExchangeClient {
             @RequestParam("amount") Double amount,
             @RequestParam(value = "date",required = false) String date);
 
-
-
 }
