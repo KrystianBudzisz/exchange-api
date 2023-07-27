@@ -46,7 +46,7 @@ public class ExchangeService {
     public ConvertReponse getConvertedRates(String from, String to, Double amount, String date) {
 
         try{
-            return exchangeClient.getConvertRate(from,to, properties.getApiKey(), amount,date);
+            return exchangeClient.getConvertRate(from,to, amount);
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to convert ", e);
         }

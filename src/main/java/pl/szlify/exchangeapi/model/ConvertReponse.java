@@ -2,6 +2,8 @@ package pl.szlify.exchangeapi.model;
 
 import lombok.*;
 
+import javax.management.Query;
+import java.math.BigDecimal;
 import java.util.Map;
 
 @Getter
@@ -12,9 +14,10 @@ import java.util.Map;
 public class ConvertReponse {
 
     private boolean success;
-    private Map<String,Double> query;
-    private Map<String,Double> info;
-    private Map<String,Double> historical;
+    private ConversionQuery query;
+    private ConversionInfo info;
+    private String date;
+    private BigDecimal result;
 
 
 }
