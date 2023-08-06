@@ -4,7 +4,9 @@
 - spróbować zaimplementować wysyłkę zapytania do zewnętrznego api (pobranie wszystkich dostępnych walut)
 
 
-
+!!! TODO: !!! 06.08 Wysylanie email. W momencie kiedy pytamy o wymiane walut, to zanim nasza aplikacja zwroci odzpowiedz, to ja bierze
+i buduje wiadomosc email, jako potwierdzenie transakcji, z wszystkimi informacjami jakie kursy i daty co i jak, i dopiero po wyslaniu
+odpowiedzi nasza apka wypluwa wiadomosc.  
 
 
 RestTemplate: To był podstawowy klient HTTP Springa, używany do synchronicznej komunikacji z serwisami REST. 

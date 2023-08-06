@@ -6,4 +6,12 @@ exchange:
     symbols-endpoint: /symbols
     historical-endpoint: /v1
     convert-endpoint: /convert
-
+feign:
+  client:
+    config:
+      default:
+        defaultRequestHeaders:
+#          Authorization:
+#            - Basic dXNlcjpwYXNzd29yZA==a
+          apikey:
+            - KQ7o2u5nhwiDtGeEvrj5ccS4NNAhOp7w
