@@ -18,14 +18,14 @@ public class ExchangeService {
     private final ExchangeApiProperties properties;
 
 
-    public CurrencyResponse getAllCurrencies() {
-        try {
-            CurrencyResponse currencies = exchangeClient.getAllCurrencies();
-            return new CurrencyResponse(properties.getBaseUrl(), currencies);
-        } catch (Exception e) {
-            throw new ExchangeApiException("Failed to fetch all currencies", e);
-        }
-    }
+//    public CurrencyResponse getAllCurrencies() {
+//        try {
+//            CurrencyResponse currencies = exchangeClient.getAllCurrencies();
+//            return new CurrencyResponse(properties.getBaseUrl(), currencies);
+//        } catch (Exception e) {
+//            throw new ExchangeApiException("Failed to fetch all currencies", e);
+//        }
+//    }
 
     public SymbolsResponse getAllSymbols() {
         try {

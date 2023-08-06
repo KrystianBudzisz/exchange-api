@@ -2,10 +2,7 @@ package pl.szlify.exchangeapi.client;
 
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.szlify.exchangeapi.model.ConvertReponse;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
 import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
@@ -13,8 +10,8 @@ import pl.szlify.exchangeapi.model.SymbolsResponse;
 
 @FeignClient(name = "exchangeClient", url = "${exchange.api.base-url}")
 public interface ExchangeClient {
-    @GetMapping("${exchange.api.all-currencies-endpoint}?access_key=${exchange.api.api-key}")
-    CurrencyResponse getAllCurrencies();
+//    @GetMapping("${exchange.api.all-currencies-endpoint}?access_key=${exchange.api.api-key}")
+//    CurrencyResponse getAllCurrencies();
 
     @GetMapping("${exchange.api.symbols-endpoint}")
     SymbolsResponse getAllSymbols();
@@ -27,7 +24,6 @@ public interface ExchangeClient {
             @RequestParam(value = "symbols", required = false) String symbols);
 
     @GetMapping("${exchange.api.convert-endpoint}")
-    @Headers("apikey: ${exchange.api.api-key}")
     ConvertReponse getConvertRate(
             @RequestParam("from") String from,
             @RequestParam("to") String to,
