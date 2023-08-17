@@ -15,3 +15,16 @@ feign:
 #            - Basic dXNlcjpwYXNzd29yZA==a
           apikey:
             - KQ7o2u5nhwiDtGeEvrj5ccS4NNAhOp7w
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: olbrachjanek@gmail.com
+    password: ckqimsgoanmlnlni
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
