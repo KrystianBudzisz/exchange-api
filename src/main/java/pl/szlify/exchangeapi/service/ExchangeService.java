@@ -28,7 +28,10 @@ public class ExchangeService {
 //    }
 
     public SymbolsResponse getAllSymbols() {
+
         try {
+//            String message = exchangeClient.getAllSymbols().toString();
+//            sendMailService.sendSimpleMessage("mlaskowski93@gmail.com", "Waluty4", message);
             return exchangeClient.getAllSymbols();
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to fetch all symbols", e);
@@ -37,16 +40,22 @@ public class ExchangeService {
 
     public HistoricalRatesResponse getHistoricalRates(String date, String base, String symbols) {
         try {
+
+
             return exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to fetch historical rates", e);
         }
     }
 
-    public ConvertReponse getConvertedRates(String from, String to, Double amount, String date) {
+    public ConvertReponse convert(String from, String to, Double amount, String date) {
+        try {
+            ConvertReponse reponse = exchangeClient.getConvertRate(from, to, amount);
+            sendMailService.sendSimpleMessage("mlaskowski93@gmail.com","Wymiana waluty333", reponse);
+//                    "Data wymiany " + reponse.getDate() +  "Informacje o wymianie" + reponse.getQuery().toString() + " Wynik to "
+//            + reponse.getInfo().toString()) + "Wynik to " + reponse.getResult();
 
-        try{
-            return exchangeClient.getConvertRate(from,to, amount);
+            return reponse;
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to convert ", e);
         }

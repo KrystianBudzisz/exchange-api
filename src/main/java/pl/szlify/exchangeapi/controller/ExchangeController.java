@@ -7,6 +7,7 @@ import pl.szlify.exchangeapi.model.CurrencyResponse;
 import pl.szlify.exchangeapi.model.HistoricalRatesResponse;
 import pl.szlify.exchangeapi.model.SymbolsResponse;
 import pl.szlify.exchangeapi.service.ExchangeService;
+import pl.szlify.exchangeapi.service.SendMailService;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,6 +15,7 @@ import pl.szlify.exchangeapi.service.ExchangeService;
 public class ExchangeController {
 
     private final ExchangeService exchangeService;
+    private final SendMailService mailService;
 
 
 //    @GetMapping("/test")
@@ -23,6 +25,7 @@ public class ExchangeController {
 
     @GetMapping("/symbols")
     public SymbolsResponse getAllSymbols() {
+//        mailService.sendSimpleMessage("mlaskowski93@gmail.com","adsad", "sadads");
         return exchangeService.getAllSymbols();
     }
     @GetMapping("/historicalDate")
@@ -40,7 +43,7 @@ public class ExchangeController {
             @RequestParam("amount") Double amount,
             @RequestParam(value = "date", required = false) String date) {
 
-        return exchangeService.getConvertedRates(from,to,amount,date);
+        return exchangeService.convert(from,to,amount,date);
     }
 
 }
