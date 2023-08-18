@@ -16,7 +16,7 @@ public class ExchangeService {
 
     private final ExchangeClient exchangeClient;
     private final ExchangeApiProperties properties;
-
+    private final SendMailService sendMailService;
 
 //    public CurrencyResponse getAllCurrencies() {
 //        try {
@@ -51,9 +51,7 @@ public class ExchangeService {
     public ConvertReponse convert(String from, String to, Double amount, String date) {
         try {
             ConvertReponse reponse = exchangeClient.getConvertRate(from, to, amount);
-            sendMailService.sendSimpleMessage("mlaskowski93@gmail.com","Wymiana waluty333", reponse);
-//                    "Data wymiany " + reponse.getDate() +  "Informacje o wymianie" + reponse.getQuery().toString() + " Wynik to "
-//            + reponse.getInfo().toString()) + "Wynik to " + reponse.getResult();
+            sendMailService.sendSimpleMessage("mimaboj299@dusyum.com","Exchange Currency", reponse);
 
             return reponse;
         } catch (Exception e) {
