@@ -32,8 +32,10 @@ public class ExchangeController {
     public HistoricalRatesResponse  getHistoricalRates(
             @RequestParam(value = "date") String date,
             @RequestParam(value = "base", required = false) String base,
-            @RequestParam(value = "symbols", required = false) String symbols) {
-        return exchangeService.getHistoricalRates(date, base, symbols);
+            @RequestParam(value = "symbols", required = false) String symbols,
+            @RequestParam("toEmail") String toEmail
+    ) {
+        return exchangeService.getHistoricalRates(date, base, symbols,toEmail);
     }
 
     @GetMapping("/convert")
@@ -41,9 +43,12 @@ public class ExchangeController {
             @RequestParam("from") String from,
             @RequestParam("to") String to,
             @RequestParam("amount") Double amount,
-            @RequestParam(value = "date", required = false) String date) {
+            @RequestParam(value = "date", required = false) String date,
+            @RequestParam("toEmail") String toEmail
+    )
+    {
 
-        return exchangeService.convert(from,to,amount,date);
+        return exchangeService.convert(from,to,amount,date,toEmail);
     }
 
 }

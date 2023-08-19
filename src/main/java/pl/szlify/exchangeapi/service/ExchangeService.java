@@ -38,21 +38,25 @@ public class ExchangeService {
         }
     }
 
-    public HistoricalRatesResponse getHistoricalRates(String date, String base, String symbols) {
+    public HistoricalRatesResponse getHistoricalRates(String date, String base, String symbols,String toEmail) {
         try {
-
-
+            HistoricalRatesResponse response = exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
+            if(response.isSuccess()){
+                sendMailService.sendSimpleMessageHistoricalData(toEmail,"Historical Data Exchange", response);
+            }
             return exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
+
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to fetch historical rates", e);
         }
     }
 
-    public ConvertReponse convert(String from, String to, Double amount, String date) {
+    public ConvertReponse convert(String from, String to, Double amount, String date,String toEmail) {
         try {
             ConvertReponse reponse = exchangeClient.getConvertRate(from, to, amount);
-            sendMailService.sendSimpleMessage("mimaboj299@dusyum.com","Exchange Currency", reponse);
-
+            if(reponse.isSuccess()){
+                sendMailService.sendSimpleMessage(toEmail,"Exchange Currency", reponse);
+            }
             return reponse;
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to convert ", e);
