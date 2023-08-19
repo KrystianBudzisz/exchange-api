@@ -41,7 +41,11 @@ public class ExchangeService {
     public HistoricalRatesResponse getHistoricalRates(String date, String base, String symbols,String toEmail) {
         try {
             HistoricalRatesResponse response = exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
-            if(response.isSuccess()){
+
+            if(toEmail == null && response.isSuccess()){
+                return response;
+            }
+            else if (response.isSuccess()){
                 sendMailService.sendSimpleMessageHistoricalData(toEmail,"Historical Data Exchange", response);
             }
             return exchangeClient.getHistoricalRates(date, properties.getApiKey(), base, symbols);
@@ -53,11 +57,14 @@ public class ExchangeService {
 
     public ConvertReponse convert(String from, String to, Double amount, String date,String toEmail) {
         try {
-            ConvertReponse reponse = exchangeClient.getConvertRate(from, to, amount);
-            if(reponse.isSuccess()){
-                sendMailService.sendSimpleMessage(toEmail,"Exchange Currency", reponse);
+            ConvertReponse response = exchangeClient.getConvertRate(from, to, amount);
+            if(toEmail == null && response.isSuccess()){
+                return response;
             }
-            return reponse;
+            else if (response.isSuccess()){
+                sendMailService.sendSimpleMessage(toEmail,"Exchange Currency", response);
+            }
+            return response;
         } catch (Exception e) {
             throw new ExchangeApiException("Failed to convert ", e);
         }
