@@ -1,6 +1,7 @@
 package pl.szlify.exchangeapi.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.szlify.exchangeapi.model.ConvertReponse;
 import pl.szlify.exchangeapi.model.CurrencyResponse;
@@ -24,6 +25,7 @@ public class ExchangeController {
 //    }
 
     @GetMapping("/symbols")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public SymbolsResponse getAllSymbols() {
 //        mailService.sendSimpleMessage("mlaskowski93@gmail.com","adsad", "sadads");
         return exchangeService.getAllSymbols();

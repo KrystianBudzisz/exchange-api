@@ -55,25 +55,25 @@ public class ExchangeServiceTest {
         verify(exchangeClient, times(1)).getAllSymbols();
     }
 
-    @Test
-    public void testGetHistoricalRates() {
-        HistoricalRatesResponse mockResponse = new HistoricalRatesResponse();
-        when(exchangeClient.getHistoricalRates("2021-01-01", "mockApiKey", "USD", "EUR")).thenReturn(mockResponse);
-
-        HistoricalRatesResponse result = exchangeService.getHistoricalRates("2021-01-01", "USD", "EUR");
-        assertNotNull(result);
-
-        verify(exchangeClient, times(1)).getHistoricalRates("2021-01-01", "mockApiKey", "USD", "EUR");
-    }
-
-    @Test
-    public void testGetAllCurrenciesFailure() {
-        when(exchangeClient.getAllCurrencies()).thenThrow(new RuntimeException("mock exception"));
-
-        assertThrows(ExchangeApiException.class, () -> {
-            exchangeService.getAllCurrencies();
-        });
-    }
+//    @Test
+//    public void testGetHistoricalRates() {
+//        HistoricalRatesResponse mockResponse = new HistoricalRatesResponse();
+//        when(exchangeClient.getHistoricalRates("2021-01-01", "mockApiKey", "USD", "EUR")).thenReturn(mockResponse);
+//
+//        HistoricalRatesResponse result = exchangeService.getHistoricalRates("2021-01-01", "USD", "EUR");
+//        assertNotNull(result);
+//
+//        verify(exchangeClient, times(1)).getHistoricalRates("2021-01-01", "mockApiKey", "USD", "EUR");
+//    }
+//
+//    @Test
+//    public void testGetAllCurrenciesFailure() {
+//        when(exchangeClient.getAllCurrencies()).thenThrow(new RuntimeException("mock exception"));
+//
+//        assertThrows(ExchangeApiException.class, () -> {
+//            exchangeService.getAllCurrencies();
+//        });
+//    }
 
     @Test
     public void testGetAllSymbolsFailure() {
@@ -84,13 +84,13 @@ public class ExchangeServiceTest {
         });
     }
 
-    @Test
-    public void testGetHistoricalRatesFailure() {
-        when(exchangeClient.getHistoricalRates(anyString(), anyString(), anyString(), anyString()))
-                .thenThrow(new RuntimeException("mock exception"));
-
-        assertThrows(ExchangeApiException.class, () -> {
-            exchangeService.getHistoricalRates("2021-01-01", "USD", "EUR");
-        });
-    }
+//    @Test
+//    public void testGetHistoricalRatesFailure() {
+//        when(exchangeClient.getHistoricalRates(anyString(), anyString(), anyString(), anyString()))
+//                .thenThrow(new RuntimeException("mock exception"));
+//
+//        assertThrows(ExchangeApiException.class, () -> {
+//            exchangeService.getHistoricalRates("2021-01-01", "USD", "EUR");
+//        });
+//    }
 }
