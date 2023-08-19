@@ -16,41 +16,59 @@ import pl.szlify.exchangeapi.service.SendMailService;
 public class ExchangeController {
 
     private final ExchangeService exchangeService;
-    private final SendMailService mailService;
 
-
-//    @GetMapping("/test")
-//    public CurrencyResponse getAllCurrencies() {
-//        return exchangeService.getAllCurrencies();
-//    }
 
     @GetMapping("/symbols")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public SymbolsResponse getAllSymbols() {
-//        mailService.sendSimpleMessage("mlaskowski93@gmail.com","adsad", "sadads");
         return exchangeService.getAllSymbols();
     }
+
     @GetMapping("/historicalDate")
-    public HistoricalRatesResponse  getHistoricalRates(
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    public HistoricalRatesResponse getHistoricalRates(
             @RequestParam(value = "date") String date,
             @RequestParam(value = "base", required = false) String base,
             @RequestParam(value = "symbols", required = false) String symbols,
             @RequestParam("toEmail") String toEmail
     ) {
-        return exchangeService.getHistoricalRates(date, base, symbols,toEmail);
+        return exchangeService.getHistoricalRates(date, base, symbols, toEmail);
+    }
+
+    @GetMapping("/historicalDateForAdmin")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public HistoricalRatesResponse getHistoricalRatesForAdmin(
+            @RequestParam(value = "date") String date,
+            @RequestParam(value = "base", required = false) String base,
+            @RequestParam(value = "symbols", required = false) String symbols,
+            @RequestParam(value = "toEmail",required = false) String toEmail
+    ) {
+        return exchangeService.getHistoricalRates(date, base, symbols, toEmail);
     }
 
     @GetMapping("/convert")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     public ConvertReponse getConvertRates(
             @RequestParam("from") String from,
             @RequestParam("to") String to,
             @RequestParam("amount") Double amount,
             @RequestParam(value = "date", required = false) String date,
             @RequestParam("toEmail") String toEmail
-    )
-    {
-
-        return exchangeService.convert(from,to,amount,date,toEmail);
+    ) {
+        return exchangeService.convert(from, to, amount, date, toEmail);
     }
+
+    @GetMapping("/convertForAdmin")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ConvertReponse getConvertRatesForAdmin(
+            @RequestParam("from") String from,
+            @RequestParam("to") String to,
+            @RequestParam("amount") Double amount,
+            @RequestParam(value = "date", required = false) String date,
+            @RequestParam(value = "toEmail", required = false) String toEmail
+    ) {
+        return exchangeService.convert(from, to, amount, date, toEmail);
+    }
+
 
 }
