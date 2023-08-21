@@ -19,13 +19,13 @@ public class ExchangeController {
 
 
     @GetMapping("/symbols")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public SymbolsResponse getAllSymbols() {
         return exchangeService.getAllSymbols();
     }
 
     @GetMapping("/historicalDate")
-    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public HistoricalRatesResponse getHistoricalRates(
             @RequestParam(value = "date") String date,
             @RequestParam(value = "base", required = false) String base,
@@ -47,7 +47,7 @@ public class ExchangeController {
     }
 
     @GetMapping("/convert")
-    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ConvertReponse getConvertRates(
             @RequestParam("from") String from,
             @RequestParam("to") String to,
